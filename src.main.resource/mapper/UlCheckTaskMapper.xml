@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.beyond.beyond.entity.mapper.UlCheckTaskMapper" >
+  <resultMap id="BaseResultMap" type="cn.beyond.beyond.entity.ul.UlCheckTask" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="credit_no" property="creditNo" jdbcType="VARCHAR" />
+    <result column="cust_cd" property="custCd" jdbcType="VARCHAR" />
+    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+    <result column="before_loan_grade" property="beforeLoanGrade" jdbcType="REAL" />
+    <result column="under_loan_grade" property="underLoanGrade" jdbcType="REAL" />
+    <result column="compre_grade" property="compreGrade" jdbcType="REAL" />
+    <result column="risk_level" property="riskLevel" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_tlr" property="createTlr" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_tlr" property="updateTlr" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, credit_no, cust_cd, cust_name, before_loan_grade, under_loan_grade, compre_grade, 
+    risk_level, status, create_tlr, create_time, update_tlr, update_time, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.beyond.beyond.entity.ul.UlCheckTaskExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ul_check_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ul_check_task
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ul_check_task
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.beyond.beyond.entity.ul.UlCheckTaskExample" >
+    delete from ul_check_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.beyond.beyond.entity.ul.UlCheckTask" >
+    insert into ul_check_task (id, credit_no, cust_cd, 
+      cust_name, before_loan_grade, under_loan_grade, 
+      compre_grade, risk_level, status, 
+      create_tlr, create_time, update_tlr, 
+      update_time, remark)
+    values (#{id,jdbcType=VARCHAR}, #{creditNo,jdbcType=VARCHAR}, #{custCd,jdbcType=VARCHAR}, 
+      #{custName,jdbcType=VARCHAR}, #{beforeLoanGrade,jdbcType=REAL}, #{underLoanGrade,jdbcType=REAL}, 
+      #{compreGrade,jdbcType=REAL}, #{riskLevel,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTlr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTlr,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.beyond.beyond.entity.ul.UlCheckTask" >
+    insert into ul_check_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="creditNo != null" >
+        credit_no,
+      </if>
+      <if test="custCd != null" >
+        cust_cd,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="beforeLoanGrade != null" >
+        before_loan_grade,
+      </if>
+      <if test="underLoanGrade != null" >
+        under_loan_grade,
+      </if>
+      <if test="compreGrade != null" >
+        compre_grade,
+      </if>
+      <if test="riskLevel != null" >
+        risk_level,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTlr != null" >
+        create_tlr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTlr != null" >
+        update_tlr,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="creditNo != null" >
+        #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custCd != null" >
+        #{custCd,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeLoanGrade != null" >
+        #{beforeLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="underLoanGrade != null" >
+        #{underLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="compreGrade != null" >
+        #{compreGrade,jdbcType=REAL},
+      </if>
+      <if test="riskLevel != null" >
+        #{riskLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTlr != null" >
+        #{createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTlr != null" >
+        #{updateTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.beyond.beyond.entity.ul.UlCheckTaskExample" resultType="java.lang.Integer" >
+    select count(*) from ul_check_task
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ul_check_task
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditNo != null" >
+        credit_no = #{record.creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custCd != null" >
+        cust_cd = #{record.custCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custName != null" >
+        cust_name = #{record.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeLoanGrade != null" >
+        before_loan_grade = #{record.beforeLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="record.underLoanGrade != null" >
+        under_loan_grade = #{record.underLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="record.compreGrade != null" >
+        compre_grade = #{record.compreGrade,jdbcType=REAL},
+      </if>
+      <if test="record.riskLevel != null" >
+        risk_level = #{record.riskLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTlr != null" >
+        create_tlr = #{record.createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTlr != null" >
+        update_tlr = #{record.updateTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ul_check_task
+    set id = #{record.id,jdbcType=VARCHAR},
+      credit_no = #{record.creditNo,jdbcType=VARCHAR},
+      cust_cd = #{record.custCd,jdbcType=VARCHAR},
+      cust_name = #{record.custName,jdbcType=VARCHAR},
+      before_loan_grade = #{record.beforeLoanGrade,jdbcType=REAL},
+      under_loan_grade = #{record.underLoanGrade,jdbcType=REAL},
+      compre_grade = #{record.compreGrade,jdbcType=REAL},
+      risk_level = #{record.riskLevel,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      create_tlr = #{record.createTlr,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_tlr = #{record.updateTlr,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.beyond.beyond.entity.ul.UlCheckTask" >
+    update ul_check_task
+    <set >
+      <if test="creditNo != null" >
+        credit_no = #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custCd != null" >
+        cust_cd = #{custCd,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeLoanGrade != null" >
+        before_loan_grade = #{beforeLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="underLoanGrade != null" >
+        under_loan_grade = #{underLoanGrade,jdbcType=REAL},
+      </if>
+      <if test="compreGrade != null" >
+        compre_grade = #{compreGrade,jdbcType=REAL},
+      </if>
+      <if test="riskLevel != null" >
+        risk_level = #{riskLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTlr != null" >
+        create_tlr = #{createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTlr != null" >
+        update_tlr = #{updateTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.beyond.beyond.entity.ul.UlCheckTask" >
+    update ul_check_task
+    set credit_no = #{creditNo,jdbcType=VARCHAR},
+      cust_cd = #{custCd,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      before_loan_grade = #{beforeLoanGrade,jdbcType=REAL},
+      under_loan_grade = #{underLoanGrade,jdbcType=REAL},
+      compre_grade = #{compreGrade,jdbcType=REAL},
+      risk_level = #{riskLevel,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_tlr = #{createTlr,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_tlr = #{updateTlr,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

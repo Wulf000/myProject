@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.beyond.beyond.entity.mapper.UlRiskLevelConfigMapper" >
+  <resultMap id="BaseResultMap" type="cn.beyond.beyond.entity.ul.UlRiskLevelConfig" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="level_name" property="levelName" jdbcType="VARCHAR" />
+    <result column="exec_interval" property="execInterval" jdbcType="INTEGER" />
+    <result column="grade_min" property="gradeMin" jdbcType="REAL" />
+    <result column="grade_max" property="gradeMax" jdbcType="REAL" />
+    <result column="grade_type" property="gradeType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_tlr" property="createTlr" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_tlr" property="updateTlr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, level_name, exec_interval, grade_min, grade_max, grade_type, create_time, create_tlr, 
+    update_time, update_tlr
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfigExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ul_risk_level_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ul_risk_level_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ul_risk_level_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfigExample" >
+    delete from ul_risk_level_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfig" >
+    insert into ul_risk_level_config (id, level_name, exec_interval, 
+      grade_min, grade_max, grade_type, 
+      create_time, create_tlr, update_time, 
+      update_tlr)
+    values (#{id,jdbcType=VARCHAR}, #{levelName,jdbcType=VARCHAR}, #{execInterval,jdbcType=INTEGER}, 
+      #{gradeMin,jdbcType=REAL}, #{gradeMax,jdbcType=REAL}, #{gradeType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createTlr,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateTlr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfig" >
+    insert into ul_risk_level_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="levelName != null" >
+        level_name,
+      </if>
+      <if test="execInterval != null" >
+        exec_interval,
+      </if>
+      <if test="gradeMin != null" >
+        grade_min,
+      </if>
+      <if test="gradeMax != null" >
+        grade_max,
+      </if>
+      <if test="gradeType != null" >
+        grade_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createTlr != null" >
+        create_tlr,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateTlr != null" >
+        update_tlr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="levelName != null" >
+        #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="execInterval != null" >
+        #{execInterval,jdbcType=INTEGER},
+      </if>
+      <if test="gradeMin != null" >
+        #{gradeMin,jdbcType=REAL},
+      </if>
+      <if test="gradeMax != null" >
+        #{gradeMax,jdbcType=REAL},
+      </if>
+      <if test="gradeType != null" >
+        #{gradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTlr != null" >
+        #{createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTlr != null" >
+        #{updateTlr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfigExample" resultType="java.lang.Integer" >
+    select count(*) from ul_risk_level_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ul_risk_level_config
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.levelName != null" >
+        level_name = #{record.levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.execInterval != null" >
+        exec_interval = #{record.execInterval,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeMin != null" >
+        grade_min = #{record.gradeMin,jdbcType=REAL},
+      </if>
+      <if test="record.gradeMax != null" >
+        grade_max = #{record.gradeMax,jdbcType=REAL},
+      </if>
+      <if test="record.gradeType != null" >
+        grade_type = #{record.gradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTlr != null" >
+        create_tlr = #{record.createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTlr != null" >
+        update_tlr = #{record.updateTlr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ul_risk_level_config
+    set id = #{record.id,jdbcType=VARCHAR},
+      level_name = #{record.levelName,jdbcType=VARCHAR},
+      exec_interval = #{record.execInterval,jdbcType=INTEGER},
+      grade_min = #{record.gradeMin,jdbcType=REAL},
+      grade_max = #{record.gradeMax,jdbcType=REAL},
+      grade_type = #{record.gradeType,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_tlr = #{record.createTlr,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_tlr = #{record.updateTlr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfig" >
+    update ul_risk_level_config
+    <set >
+      <if test="levelName != null" >
+        level_name = #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="execInterval != null" >
+        exec_interval = #{execInterval,jdbcType=INTEGER},
+      </if>
+      <if test="gradeMin != null" >
+        grade_min = #{gradeMin,jdbcType=REAL},
+      </if>
+      <if test="gradeMax != null" >
+        grade_max = #{gradeMax,jdbcType=REAL},
+      </if>
+      <if test="gradeType != null" >
+        grade_type = #{gradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTlr != null" >
+        create_tlr = #{createTlr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTlr != null" >
+        update_tlr = #{updateTlr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.beyond.beyond.entity.ul.UlRiskLevelConfig" >
+    update ul_risk_level_config
+    set level_name = #{levelName,jdbcType=VARCHAR},
+      exec_interval = #{execInterval,jdbcType=INTEGER},
+      grade_min = #{gradeMin,jdbcType=REAL},
+      grade_max = #{gradeMax,jdbcType=REAL},
+      grade_type = #{gradeType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_tlr = #{createTlr,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_tlr = #{updateTlr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
